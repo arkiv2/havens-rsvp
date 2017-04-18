@@ -17,4 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/accept', function() {
+	dd(request()->all());
+});
 Route::get('/home', 'HomeController@index');
+Route::get('/dashboard', 'HomeController@dashboard');
+
+Route::group(['prefix' => 'social/facebook'], function () {
+    Route::get('redirect', 'SocialAuthController@redirect');
+    Route::get('callback', 'SocialAuthController@callback');
+});
